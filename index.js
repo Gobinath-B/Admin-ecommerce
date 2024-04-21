@@ -25,21 +25,6 @@ app.get("/products", (req, res) => {
     res.render("product",{data:data})
   })
 });
-app.get("/product/:id", async(req, res) =>{
-  const id = req.params.id
-  const relate=[]
-  const data =  await fb.collection('products').doc(id).get()
-  const cat =  await fb.collection('products').get()
-  cat.forEach(doc=>{
-    if(data.data().pcat==doc.data().pcat){
-      if(data.id!=doc.id){
-        relate.push({...doc.data(),id:doc.id})
-      }
-    }
-  })
-  
-  res.render('singleproduct',{data:{...data.data(),id:data.id},relate:relate})
-});
 
 
 app.use("/admin",product)
