@@ -5,7 +5,7 @@ const db = require('./config');
 const product = require("./routes/product");
 const fb = db.firestore()
 require('dotenv').config()
-const PORT = 8081 || process.env.PORT
+const PORT = 8000 || process.env.PORT
 
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
