@@ -122,7 +122,10 @@
 
   <script>
 
-    const b = <%- JSON.stringify(data) %>;
+const b = data ? JSON.stringify(data) : null;
+
+// const b = <%- JSON.stringify(data) %>;
+
   </script>
 
   <script type="module">
