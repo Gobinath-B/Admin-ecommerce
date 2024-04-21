@@ -33,21 +33,22 @@
       <div class="col-6 mx-auto">
         <div class="form-group">
           <label for="pname">Product Name</label>
-          <input class="form-control" type="text" name="pname" id="pname" value="<%=data.pName%>">
+          <input class="form-control" type="text" name="pname" id="pname" value="<%=data.title%>">
         </div>
-        <% const pcat=['Washing','Filling','Sealing','Labeling','Conveyor','Spares','Others'] %>
+        <% const pcat = ['Electronics', 'Clothing', 'Footwear', 'Accessories', 'Home Appliances', 'Books', 'Beauty'] %>
+
         <div class="form-group">
           <label for="pname">Product Category</label>
           <select class="form-control" name="pcat" id="pcat">
             <% pcat?.forEach(f=> { %>
-              <%= console.log(`${f}==${data.pcat}`) %>
+              <%= console.log(`${f}==${data.category}`) %>
               <option value="<%= f %>" <%= data.pcat == f ? 'selected': '' %>  ><%= f %></option>
           <% }); %>
           </select>
         </div>
         <div class="form-group">
           <label for="pdesc">Product Description</label>
-          <textarea class="form-control" type="text" name="pdesc" id="pdesc"><%-data.pDesc%></textarea>
+          <textarea class="form-control" type="text" name="pdesc" id="pdesc"><%-data.description></textarea>
         </div>
         <div class="form-group">
           <label for="pdesc">want update image?</label>
@@ -169,10 +170,10 @@
         if (document.getElementById('checkimage').checked) {
           await uploadBytes(storageRef, pImage.files[0])
           const data = {
-            pName: pName.value,
-            pDesc: pDesc.value,
-            pcat:pcat.value,
-            pImage: await getDownloadURL(storageRef),
+            title: pName.value,
+            description: pDesc.value,
+            category:pcat.value,
+            images: await getDownloadURL(storageRef),
           }
           const docRef = await updateDoc(ProductRef, data);
           console.log("",docRef);
@@ -182,9 +183,9 @@
 
         } else {
           const data = {
-            pName: pName.value,
-            pDesc: pDesc.value,
-            pcat:pcat.value,
+            title: pName.value,
+            description: pDesc.value,
+            category:pcat.value,
           }
           const docRef = await updateDoc(ProductRef, data);
           console.log("",docRef);
