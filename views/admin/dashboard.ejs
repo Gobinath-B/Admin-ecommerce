@@ -31,8 +31,8 @@
        <div class="row">
         <% data.forEach(e=>{%>
           <div class="col-md-12 col-lg-3 card p-2 m-2 ">
-            <img src="<%=e.pImage%>" width="100%" height="250px" alt="">
-            <p><%=e.pName%></p>
+            <img src="<%=e.images[0]%>" width="100%" height="250px" alt="">
+            <p><%=e.title%></p>
             <div class="">
                 <a class="btn btn-primary" href="/admin/edit/<%= e.id%>">Update</a>
                 <button onclick="del('<%=e.id%>')" data-del="<%=e.id%>" class="btn btn-danger" >Delete</button>
