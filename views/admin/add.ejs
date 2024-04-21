@@ -43,33 +43,34 @@
       <div class="row">
         <div class="col-6 mx-auto">
           <div class="form-group">
-            <label for="pname">Product Name</label>
-            <input class="form-control" type="text" name="pname" id="pname" />
+            <label for="productName">Product Name</label>
+            <input class="form-control" type="text" name="productName" id="productName" />
           </div>
           <div class="form-group">
-            <label for="pname">Product Category</label>
-            <select class="form-control" type="text" name="pcat" id="pcat">
-              <option value="Washing">Washing</option>
-              <option value="Filling">Filling</option>
-              <option value="Sealing">Sealing</option>
-              <option value="Labeling">Labeling</option>
-              <option value="Conveyor">Conveyor</option>
-              <option value="Spares">Spares</option>
-              <option value="Others">Others</option>
-            </select>
+            <label for="category">Product Category</label>
+            <select class="form-control" type="text" name="category" id="category">
+              <option value="electronics">Electronics</option>
+              <option value="clothing">Clothing</option>
+              <option value="footwear">Footwear</option>
+              <option value="accessories">Accessories</option>
+              <option value="home_appliances">Home Appliances</option>
+              <option value="books">Books</option>
+              <option value="beauty">Beauty</option>
+          </select>
+          
           </div>
           <div class="form-group">
-            <label for="pdesc">Product Description</label>
+            <label for="description">Product Description</label>
             <textarea
               class="form-control"
               type="text"
-              name="pdesc"
-              id="pdesc"
+              name="description"
+              id="description"
             ></textarea>
           </div>
           <div class="form-group">
-            <label for="pdesc">Product Image</label>
-            <input class="form-control" type="file" name="pimage" id="pimage" />
+            <label for="image">Product Image</label>
+            <input class="form-control" type="file" name="image" id="image" />
           </div>
           <div class="form-group">
             <button id="addbtn" class="btn btn-primary">Add Product</button>
@@ -168,16 +169,16 @@
       const db = getFirestore(app);
       const storage = getStorage(app);
 
-      const pName = document.getElementById("pname");
-      const pDesc = document.getElementById("pdesc");
-      const pImage = document.getElementById("pimage");
+      const title = document.getElementById("productName");
+      const description = document.getElementById("description");
+      const images = document.getElementById("image");
       const addbtn = document.getElementById("addbtn");
-      const pcat = document.getElementById("pcat");
+      const category = document.getElementById("category");
 
       addbtn.addEventListener("click", async (e) => {
         const storageRef = ref(
           storage,
-          "products/" + pName.value + "/" + pName.value + ".png"
+          "products/" + title.value + "/" + title.value + ".png"
         );
 
         try {
@@ -186,10 +187,10 @@
           await uploadBytes(storageRef, pImage.files[0]);
 
           const data = {
-            pName: pName.value,
-            pDesc: pDesc.value,
-            pcat: pcat.value,
-            pImage: await getDownloadURL(storageRef),
+            title: productName.value,
+            description: description.value,
+            category: category.value,
+            images: await getDownloadURL(storageRef),
           };
 
           const docRef = await addDoc(collection(db, "products"), data);
