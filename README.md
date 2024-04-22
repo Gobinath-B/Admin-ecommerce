@@ -23,7 +23,7 @@ To set up and run the application locally, follow these steps:
 
 1. **Clone the Repository**:
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/Gobinath-B/Admin-ecommerce.git
     cd <repository-folder>
     ```
 
