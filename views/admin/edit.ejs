@@ -40,10 +40,11 @@
         <div class="form-group">
           <label for="pname">Product Category</label>
           <select class="form-control" name="pcat" id="pcat">
-            <% pcat?.forEach(f=> { %>
+            <% pcat?.forEach(f => { %>
               <%= console.log(`${f}==${data.category}`) %>
-              <option value="<%= f %>" <%= data.pcat == f ? 'selected': '' %>  ><%= f %></option>
+              <option value="<%= f %>" <%= data.pcat == f ? 'selected' : '' %>><%= f %></option>
           <% }); %>
+          
           </select>
         </div>
         <div class="form-group">
