@@ -6,7 +6,7 @@ product.get("/add", (req,res) => res.render("admin/add"))
 
 
 product.get('/edit/:id',(req,res)=>{
-    const id = req.params.id
+    const id = req.params.id;
     fb.collection('products').doc(id).get()
     .then(result=>{
         console.log(result.data());
